@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import {
   Command,
@@ -13,6 +13,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import type { HeroBuff } from "@/data/hero-buffs";
+import { searchHeroes } from "@/data/search";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -31,50 +32,23 @@ type HeroSearchProps = {
 export function HeroSearch({ onSelect, placeholder }: HeroSearchProps) {
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebouncedValue(query);
-  const [suggestions, setSuggestions] = useState<HeroSuggestion[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    let ignore = false;
-
-    async function run() {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          `/api/search?query=${encodeURIComponent(debouncedQuery)}`
-        );
-        const data = (await res.json()) as { results: HeroSuggestion[] };
-        if (!ignore) {
-          const normalized = data.results.map((hero) => ({
-            ...hero,
-            aliases: hero.aliases ?? [],
-            pinyin: hero.pinyin ?? [],
-            initials: hero.initials ?? [],
-            keywords: hero.keywords ?? [],
-          }));
-          setSuggestions(normalized);
-        }
-      } catch (error) {
-        console.error("搜索失败", error);
-      } finally {
-        if (!ignore) {
-          setLoading(false);
-        }
-      }
-    }
-
-    run();
-
-    return () => {
-      ignore = true;
-    };
+  const suggestions = useMemo(() => {
+    return searchHeroes(debouncedQuery).map((hero) => ({
+      id: hero.id,
+      slug: hero.slug,
+      nameZh: hero.nameZh,
+      nameEn: hero.nameEn,
+      aliases: hero.searchAliases ?? [],
+      pinyin: hero.searchPinyinFull ?? [],
+      initials: hero.searchPinyinInitials ?? [],
+      keywords: hero.searchKeywords ?? [],
+    }));
   }, [debouncedQuery]);
 
   const emptyText = useMemo(() => {
-    if (loading) return "正在载入建议…";
     if (!debouncedQuery) return "输入英雄名称、绰号或标签";
     return "没有找到匹配的英雄";
-  }, [debouncedQuery, loading]);
+  }, [debouncedQuery]);
 
   return (
     <div className="rounded-lg border border-border bg-card">
