@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ashe",
+    "slug": "ashe",
+    "nameZh": "寒冰射手",
+    "nameEn": "Ashe",
+    "damageDealtMultiplier": 1,
+    "damageTakenMultiplier": 1,
+    "healingGivenMultiplier": 1,
+    "shieldingGivenMultiplier": 1,
+    "abilityHasteBonus": -30,
+    "attackSpeedBonus": 0.025,
+    "energyRegenBonus": 0,
+    "tenacity": 0
+  },
+  {
+    "id": "lux",
+    "slug": "lux",
+    "nameZh": "光辉女郎",
+    "nameEn": "Lux",
+    "damageDealtMultiplier": 0.9,
+    "damageTakenMultiplier": 1.1,
+    "healingGivenMultiplier": 1,
+    "shieldingGivenMultiplier": 0.9,
+    "abilityHasteBonus": 0,
+    "attackSpeedBonus": 0,
+    "energyRegenBonus": 0,
+    "tenacity": 0
+  },
+  {
+    "id": "jinx",
+    "slug": "jinx",
+    "nameZh": "暴走萝莉",
+    "nameEn": "Jinx",
+    "damageDealtMultiplier": 0.9,
+    "damageTakenMultiplier": 1.05,
+    "healingGivenMultiplier": 1,
+    "shieldingGivenMultiplier": 1,
+    "abilityHasteBonus": 0,
+    "attackSpeedBonus": 0,
+    "energyRegenBonus": 0,
+    "tenacity": 0
+  }
+]

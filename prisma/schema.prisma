@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model Hero {
+  id        String      @id @default(cuid())
+  slug      String      @unique
+  nameZh    String
+  nameEn    String
+  iconUrl   String?
+  roles     String[]
+  tags      String[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  buffs     HeroBuff[]
+}
+
+model HeroBuff {
+  id                       String   @id @default(cuid())
+  hero                     Hero     @relation(fields: [heroId], references: [id])
+  heroId                   String
+  patch                    String
+  damageDealtMultiplier    Float
+  damageTakenMultiplier    Float
+  healingGivenMultiplier   Float
+  shieldingGivenMultiplier Float
+  abilityHasteBonus        Int
+  attackSpeedBonus         Float
+  notes                    String?
+  createdAt                DateTime @default(now())
+
+  @@unique([heroId, patch])
+}
+
+model PatchHistory {
+  id        String   @id @default(cuid())
+  patch     String   @unique
+  title     String
+  releasedAt DateTime
+  summary   String?
+  createdAt DateTime @default(now())
+}
