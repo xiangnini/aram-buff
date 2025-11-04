@@ -1,12 +1,25 @@
 import "dotenv/config";
 
 import heroBuffs from "@/data/hero-buffs.json";
+import type { HeroBuff } from "@/data/hero-buffs";
 import { prisma } from "@/lib/prisma";
+
+type HeroBuffRecord = HeroBuff & {
+  roles?: string[];
+  tags?: string[];
+  patch?: string;
+};
+
+const FALLBACK_PATCH = process.env.DEFAULT_PATCH ?? "latest";
 
 async function main() {
   console.log(`即将同步 ${heroBuffs.length} 个英雄的 ARAM Buff 数据…`);
 
-  for (const hero of heroBuffs) {
+  for (const hero of heroBuffs as HeroBuffRecord[]) {
+    const roles = hero.roles ?? [];
+    const tags = hero.tags ?? [];
+    const patch = hero.patch ?? FALLBACK_PATCH;
+
     const heroRecord = await prisma.hero.upsert({
       where: { slug: hero.slug },
       create: {
@@ -14,14 +27,14 @@ async function main() {
         nameZh: hero.nameZh,
         nameEn: hero.nameEn,
         iconUrl: null,
-        roles: hero.roles,
-        tags: hero.tags
+        roles,
+        tags
       },
       update: {
         nameZh: hero.nameZh,
         nameEn: hero.nameEn,
-        roles: hero.roles,
-        tags: hero.tags
+        roles,
+        tags
       }
     });
 
@@ -29,12 +42,12 @@ async function main() {
       where: {
         heroId_patch: {
           heroId: heroRecord.id,
-          patch: hero.patch
+          patch
         }
       },
       create: {
         heroId: heroRecord.id,
-        patch: hero.patch,
+        patch,
         damageDealtMultiplier: hero.damageDealtMultiplier,
         damageTakenMultiplier: hero.damageTakenMultiplier,
         healingGivenMultiplier: hero.healingGivenMultiplier,
