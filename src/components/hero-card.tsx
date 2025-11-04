@@ -1,15 +1,11 @@
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { HeroBuff } from "@/data/hero-buffs";
 
 type HeroCardProps = {
   hero: HeroBuff;
 };
-
-const formatPercent = (value: number) =>
-  `${value >= 1 ? "+" : ""}${((value - 1) * 100).toFixed(1)}%`;
 
 export function HeroCard({ hero }: HeroCardProps) {
   return (

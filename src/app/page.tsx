@@ -1,6 +1,4 @@
-import { HeroCatalogue } from "@/components/hero-catalogue";
 import { HeroSpotlight } from "@/components/hero-spotlight";
-import { MatchAnalyzer } from "@/components/match-analyzer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { HERO_BUFFS } from "@/data/hero-buffs";
 
