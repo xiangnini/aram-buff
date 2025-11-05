@@ -1,6 +1,12 @@
+import Link from "next/link";
+
+import { ExternalLink } from "lucide-react";
+
 import { HeroSpotlight } from "@/components/hero-spotlight";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 import { HERO_BUFFS } from "@/data/hero-buffs";
+import { SITE_CONFIG } from "@/data/site-config";
 
 export default function Home() {
   return (
@@ -13,7 +19,15 @@ export default function Home() {
             一站式查询当版本大乱斗英雄的数值增益、实时筛选阵容并即时对比对局双方的增益曲线。
           </p>
         </div>
-        <ThemeToggle />
+        <nav className="flex items-center gap-3">
+          <Button asChild variant="secondary" className="gap-1">
+            <Link href={SITE_CONFIG.feedbackUrl} target="_blank" rel="noreferrer">
+              意见反馈
+              <ExternalLink className="h-4 w-4" aria-hidden />
+            </Link>
+          </Button>
+          <ThemeToggle />
+        </nav>
       </header>
 
       <HeroSpotlight heroes={HERO_BUFFS} />

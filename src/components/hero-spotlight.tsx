@@ -3,7 +3,9 @@
 import { useMemo, useState } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import type { HeroBuff } from "@/data/hero-buffs";
+import { SITE_CONFIG } from "@/data/site-config";
 
 import { HeroSearch, type HeroSuggestion } from "./hero-search";
 import { HeroCard } from "./hero-card";
@@ -26,7 +28,12 @@ export function HeroSpotlight({ heroes }: HeroSpotlightProps) {
   return (
     <Card className="border-0 bg-slate-100 text-slate-900 shadow-2xl dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-900 dark:to-slate-800 dark:text-slate-50">
       <CardHeader className="space-y-4">
-        <CardTitle className="text-3xl font-bold">快速检索英雄 Buff</CardTitle>
+        <CardTitle className="flex flex-wrap items-center justify-between gap-3 text-3xl font-bold">
+          <span>快速检索英雄 Buff</span>
+          <Badge variant="secondary" className="bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-900">
+            版本 {SITE_CONFIG.gameVersion}
+          </Badge>
+        </CardTitle>
         <p className="text-sm text-slate-600 dark:text-slate-300">
           输入英雄、绰号或标签，快速锁定需要了解的英雄增益详情。
         </p>

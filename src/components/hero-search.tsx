@@ -88,14 +88,14 @@ export function HeroSearch({ onSelect, placeholder }: HeroSearchProps) {
                   </div>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span>{hero.nameEn}</span>
-                    {hero.aliases
+                    {/* {hero.aliases
                       .filter((alias) => alias !== hero.nameZh && alias !== hero.nameEn)
                       .slice(0, 3)
                       .map((alias) => (
                       <Badge key={alias} variant="outline">
                         {alias}
                       </Badge>
-                    ))}
+                    ))} */}
                   </div>
                 </CommandItem>
               ))}
