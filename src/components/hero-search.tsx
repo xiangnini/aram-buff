@@ -15,8 +15,6 @@ import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import type { HeroBuff } from "@/data/hero-buffs";
 import { searchHeroes } from "@/data/search";
 
-import { Badge } from "@/components/ui/badge";
-
 export type HeroSuggestion = Pick<HeroBuff, "id" | "slug" | "nameZh" | "nameEn"> & {
   aliases: string[];
   pinyin: string[];
