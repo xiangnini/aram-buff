@@ -10,6 +10,10 @@
 - ⚔️ **当局阵容对比**：录入双方阵容后自动计算平均增益、位置分布与能力提醒。
 - 🗃️ **独立数据维护**：通过 JSON 数据与 Prisma 脚本独立维护 buff，支持版本追溯与数据库同步。
 
+## 访问地址
+
+https://xiangnini.github.io/aram-buff/
+
 ## 技术栈
 
 - **前端**：Next.js 14 (App Router) · React 18 · TypeScript · Tailwind CSS · shadcn/ui · cmdk
