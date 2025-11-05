@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
+    "prebuild": "node scripts/obfuscate-hero-buffs.cjs",
+    "data:obfuscate": "node scripts/obfuscate-hero-buffs.cjs",
     "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
