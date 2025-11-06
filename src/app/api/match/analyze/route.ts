@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { MatchRequestSchema, analyzeMatch } from "@/services/match-analysis";
 
+export const dynamic = "force-static";
+
 export async function POST(request: Request) {
   const json = await request.json();
   const parseResult = MatchRequestSchema.safeParse(json);

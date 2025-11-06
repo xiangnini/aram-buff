@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { MatchAnalysis } from "@/services/match-analysis";
+import { analyzeMatch } from "@/services/match-analysis";
 
 import { HeroSearch, type HeroSuggestion } from "./hero-search";
 
@@ -63,15 +64,14 @@ export function MatchAnalyzer({ initialBlue = [], initialRed = [] }: MatchAnalyz
             return { team, data: null as MatchAnalysis | null, status: "idle" as FetchState };
           }
           try {
-            const res = await fetch("/api/match/analyze", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ heroIds: teamHeroes.map((hero) => hero.id) })
-            });
-            if (!res.ok) {
-              throw new Error("请求失败");
+            // Use client-side analysis instead of API call for static export compatibility
+            const heroIds = teamHeroes.map((hero) => hero.id);
+            const data = analyzeMatch(heroIds);
+            
+            if (!data) {
+              throw new Error("分析失败");
             }
-            const data = (await res.json()) as MatchAnalysis;
+            
             return { team, data, status: "success" as FetchState };
           } catch (error) {
             console.error("分析失败", error);
