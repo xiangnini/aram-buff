@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { MatchRequestSchema, analyzeMatch } from "@/services/match-analysis";
 
+export const runtime = 'edge';
 export const dynamic = "force-static";
 
 export async function POST(request: Request) {

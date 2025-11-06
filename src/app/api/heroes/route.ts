@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { HERO_BUFFS } from "@/data/hero-buffs";
 
+export const runtime = 'edge';
 export const dynamic = "force-static";
 
 export async function GET() {
