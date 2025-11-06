@@ -1,42 +1,11 @@
 # Cloudflare Pages ignore file
-# These files won't be uploaded during deployment
+# Only upload the necessary built files
 
-# Dependencies
-node_modules/
+# Keep only .vercel/output/static for deployment
+# Everything else can be ignored
+*
+!.vercel/
+!.vercel/output/
+!.vercel/output/static/
+!.vercel/output/static/**
 
-# Cache files
-.next/cache/
-cache/
-.cache/
-
-# Tests
-*.test.ts
-*.test.tsx
-*.test.js
-*.test.jsx
-__tests__/
-coverage/
-
-# Development files
-*.md
-!README.md
-.git/
-.gitignore
-.eslintrc*
-.prettierrc*
-
-# Build artifacts that shouldn't be uploaded
-.next/static/chunks/webpack-*
-
-# Environment files (use CF environment variables instead)
-.env*.local
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# OS files
-.DS_Store
-Thumbs.db

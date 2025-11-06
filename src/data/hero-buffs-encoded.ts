@@ -1,5 +1,5 @@
 // ⚠️ 此文件由 scripts/obfuscate-hero-buffs.cjs 自动生成，请勿手动修改。
-// 最后同步时间：2025-11-05T03:31:03.093Z
+// 最后同步时间：2025-11-06T01:19:52.872Z
 export const ENCODED_HERO_BUFFS =
   "gU7tygmtat5+ej+NOtrtejHEFGOROcJnyXutq25sLgENgcItatqNWdqN+WQN7O1ctL7tq25sLgEN8gotat5hej+NOtrtFXJTLg/N8X0+4k8D/gHiyAh7yg0G" +
   "OMVHq25xLgE+Fj0uLgTN4xEE4k8SeXHSFAOtaMz7Oc+NLgHS4c/kyAFN4xEE4k8SeXHSFAOtaMz7O6DVyg07FXNsFi/S/c0s1A07/XNr4XNNetORYlrtLg5S" +

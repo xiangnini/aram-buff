@@ -12,6 +12,7 @@
 /.next/
 /out/
 /cache
+.vercel
 
 # production
 /build
